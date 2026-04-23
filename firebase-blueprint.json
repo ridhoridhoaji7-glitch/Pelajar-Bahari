@@ -1,0 +1,75 @@
+{
+  "entities": {
+    "news": {
+      "title": "Leadership Activity Info",
+      "description": "Stores activity information, news, announcements, and agenda items.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Title of the activity" },
+        "content": { "type": "string", "description": "Description of the activity" },
+        "date": { "type": "string", "format": "date-time", "description": "Date of activity" },
+        "type": { "type": "string", "enum": ["news", "announcement", "agenda"], "description": "Category" },
+        "attachmentUrl": { "type": "string", "description": "URL to PDF, PNG, JPG, JPEG file" },
+        "attachmentName": { "type": "string", "description": "Name of the file" },
+        "attachmentType": { "type": "string", "description": "Mime type or extension" },
+        "authorId": { "type": "string", "description": "UID of the creator" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp" }
+      },
+      "required": ["title", "content", "type", "date"]
+    },
+    "members": {
+      "title": "Leadership Directory",
+      "description": "Directory of PC, PAC, and PR leaders for IPNU and IPPNU.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Full name" },
+        "nia": { "type": "string", "description": "Nomor Induk Anggota" },
+        "address": { "type": "string", "description": "Address" },
+        "phone": { "type": "string", "description": "Contact number" },
+        "joinDate": { "type": "string", "format": "date", "description": "Join date" },
+        "position": { "type": "string", "description": "Position" },
+        "organization": { "type": "string", "enum": ["IPNU", "IPPNU"], "description": "Org affiliation" },
+        "level": { "type": "string", "enum": ["PC", "PAC", "PR"], "description": "Leadership level" },
+        "imageUrl": { "type": "string", "description": "Leader photo URL" }
+      },
+      "required": ["name", "organization", "level", "phone"]
+    },
+    "orgContent": {
+      "title": "Organization Content",
+      "description": "Static content like history, vision, and mission that can be updated.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The key identifier (e.g., history, vision)" },
+        "text": { "type": "string", "description": "The actual text content" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last update timestamp" }
+      },
+      "required": ["id", "text"]
+    },
+    "settings": {
+      "title": "System Settings",
+      "description": "General application settings.",
+      "type": "object",
+      "properties": {
+        "adminEmails": { "type": "array", "description": "List of emails with admin rights" }
+      }
+    }
+  },
+  "firestore": {
+    "/news/{newsId}": {
+      "schema": "news",
+      "description": "Collection of news, announcements, and agenda events."
+    },
+    "/members/{memberId}": {
+      "schema": "members",
+      "description": "Collection of organization members."
+    },
+    "/orgContent/{contentId}": {
+      "schema": "orgContent",
+      "description": "Storage for editable static pages like History, Vision, Mission."
+    },
+    "/settings/{settingId}": {
+      "schema": "object",
+      "description": "Application settings including contact information."
+    }
+  }
+}
