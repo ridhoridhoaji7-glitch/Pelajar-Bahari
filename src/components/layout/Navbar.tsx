@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Newspaper, Users, Phone, LogIn, LogOut, ShieldCheck, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Newspaper, Users, Phone, LogIn, LogOut, ShieldCheck, Menu, X, Smartphone } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { cn } from '../../lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
@@ -72,7 +72,15 @@ const Navbar = () => {
         )}
       </nav>
 
-      <div className="p-6 bg-emerald-950/40 mt-auto border-t border-emerald-800/50">
+      <div className="p-6 bg-emerald-950/40 mt-auto border-t border-emerald-800/50 space-y-4">
+        <button
+          id="install-btn"
+          className="hidden w-full flex items-center justify-center space-x-2 py-3 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-emerald-500/30 transition-colors"
+        >
+          <Smartphone size={16} />
+          <span>Install Aplikasi</span>
+        </button>
+
         {user ? (
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">

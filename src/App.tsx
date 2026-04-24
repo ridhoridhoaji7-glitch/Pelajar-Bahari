@@ -13,6 +13,7 @@ import Members from './pages/Members';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
 import { AnimatePresence } from 'motion/react';
+import InstallPrompt from './components/InstallPrompt';
 
 const PageHeader = () => {
   const location = useLocation();
@@ -71,6 +72,8 @@ export default function App() {
           
           {/* Global Texture Overlay */}
           <div className="fixed inset-0 pointer-events-none opacity-[0.03] contrast-150 z-[100] bg-[url('https://www.transparenttextures.com/patterns/felt.png')]" />
+          
+          <InstallPrompt />
         </div>
       </Router>
     </AuthProvider>
